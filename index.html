@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .slider {
+        border: 1px solid red;
+        background-color: rgb(72, 146, 54);
+
+        display: flex;
+
+    }
+
+    .slider .txt-window {
+        width: 50%;
+        background-color: rgb(105, 14, 64);
+    }
+
+    .slider .txt-window .txt {
+        width: 100%;
+        height: 100%;
+        background-color: rgb(134, 120, 120);
+    }
+
+    .txt-window .overlay {
+        width: 100%;
+        height: 100%;
+        background-color: rgb(148, 56, 56);
+        position: relative;
+        top: -100%;
+        left: -100%;
+        z-index: 1;
+
+    }
+
+
+    .slider .txt-window .txt .txt-slide {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .slider .window {
+        width: 50%;
+        border: 10px solid rgb(0, 132, 255);
+        overflow: hidden;
+        position: relative;
+        z-index: 2;
+        margin: 38px 0 37px 66px;
+    }
+
+    .slider .window .slides {
+        display: flex;
+        transition: transform 1s ease;
+    }
+
+
+
+
+    .btns {
+        border: 1px solid red;
+    }
+
+    .btns .nxt {
+        background-color: rgb(18, 148, 25);
+        height: 10vh;
+    }
+
+    .btns .prev {
+        background-color: rgb(148, 18, 40);
+        height: 10vh;
+    }
+
+    .acc {
+        height: 100vh;
+        width: 30vw;
+        background-color: rgb(114, 143, 77);
+    }
+
+    .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
+
+    .active,
+    .accordion:hover {
+        background-color: #ccc;
+    }
+
+    .panel {
+        padding: 0 18px;
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+
+    .btns .menu-mobile {
+        display: none;
+        float: right;
+    }
+
+    .menu-right {
+        height: 100vh;
+        width: 40vw;
+        background-color: #fff;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        transform: translateX(-80vw);
+        will-change: transform;
+        transition: transform 0.5s ease;
+    }
+
+    .menu-right.show {
+        transform: translateX(0);
+    }
+
+    .black {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        z-index: 90;
+        top: 0;
+        left: 0;
+        will-change: transform, background-color;
+        background-color: rgba(0, 0, 0, 0);
+        transform: translateX(-100vw);
+        transition: background-color 1s ease;
+    }
+
+    .black.show {
+        display: block;
+        transform: translateX(0);
+        background-color: rgba(0, 0, 0, 0.6);
+        transition: background-color 1s ease;
+    }
+
+    @media (max-width:1100px) {
+        .btns .menu-mobile {
+            display: block;
+            text-align: right;
+            font-size: 50px;
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="slider">
+                    <div class="window">
+                        <div class="slides">
+                            <a href="" class="slide">
+                                <img src="https://st-listas.20minutos.es/images/2013-03/358071/3964058_640px.jpg?1434264897" alt="">
+                            </a>
+                            <a href="" class="slide">
+                                <img src="http://2.bp.blogspot.com/-IMdxurNMGUw/Tx5EMTtN49I/AAAAAAAAAJA/AUhAfC9_MNU/s1600/Goofy+cartoons+disney+1goofy2.png"
+                                    alt="">
+                            </a>
+                            <a href="" class="slide">
+                                <img src="https://st-listas.20minutos.es/images/2013-03/358071/3964058_640px.jpg?1434264897" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="txt-window">
+                        <div class="txt">
+                            <div class="txt-slide">
+                                <h1>pisun</h1>
+                                <h2>zalupa</h2>
+                                <button>suka</button>
+                            </div>
+                            <div class="txt-slide">
+                                <h1>suka</h1>
+                                <h2>zalupa</h2>
+                                <button>suka</button>
+                            </div>
+                            <div class="txt-slide">
+                                <h1>hoyina</h1>
+                                <h2>zalupa</h2>
+                                <button>suka</button>
+                            </div>
+                        </div>
+                        <div class="overlay"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="btns">
+        <div id="btn" class="nxt"></div>
+        <div id="btn" class="prev">prev</div>
+        <div class="menu-mobile">mob</div>
+    </div>
+    <div class="menu-right">
+        <button class="accordion">Section 1</button>
+        <div class="panel">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.
+            </p>
+        </div>
+
+        <button class="accordion">Section 2</button>
+        <div class="panel">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.
+            </p>
+        </div>
+
+        <button class="accordion">Section 3</button>
+        <div class="panel">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.
+            </p>
+        </div>
+
+    </div>
+    <div class="black"></div>
+
+</body>
+<script src="anime.min.js"></script>
+<script src="menu.js"></script>
+<script>
+    let dick = document.querySelectorAll('.slide').length;
+    let btn_prev = document.querySelector('.prev');
+    let btn_nxt = document.querySelector('.nxt');
+    let im = document.querySelectorAll('.slide img');
+    let drop = document.querySelectorAll('.drop');
+    let menu = document.querySelectorAll('.menu');
+    let wind = document.querySelector('.window').clientWidth;
+    let count = 0;
+    let i = 0;
+    let flag;
+    let tete = true;
+    let win;
+
+    document.querySelector('.slides').style.width = '' + (dick * 100) + '%';
+    window.onload = function () {
+        win = document.querySelector('.window').clientWidth;
+        Array.prototype.forEach.call(im, function (el, i) {
+            el.style.width = '' + win + 'px';
+        });
+    }
+    window.onresize = function (e) {
+        win = document.querySelector('.window').clientWidth;
+        Array.prototype.forEach.call(im, function (el, i) {
+            el.style.width = '' + win + 'px';
+        });
+        
+    }
+    console.log(win);
+    btn_prev.addEventListener('click', movePrev);
+    btn_nxt.addEventListener('click', moveNxt);
+
+    function movePrev() {
+        flag = 2;
+        plusDivs(-1);
+        move();
+    }
+
+    function moveNxt() {
+        flag = 1;
+        plusDivs(+1);
+        move();
+    }
+
+    function move() {
+        if (flag == 1) {
+            i++;
+            if (i < dick) {
+                count -= win;
+            } else if (i >= dick) {
+                i = 0;
+                count = 0;
+            }
+        }
+        if (flag == 2) {
+            i--;
+            if (i >= 0) {
+                count += win;
+            } else if (i < 0) {
+                i = dick - 1;
+                count = -(win * (dick - 1));
+            }
+        }
+        
+            document.querySelector('.slides').style.transform = 'translateX(' + count + 'px)';
+          
+    };
+
+
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.querySelectorAll(".txt-slide");
+        if (n > x.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = x.length
+        };
+
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+
+
+    }
+</script>
+
+
+</html>
